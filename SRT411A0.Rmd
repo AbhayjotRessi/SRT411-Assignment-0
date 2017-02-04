@@ -1,0 +1,224 @@
+---
+title: "SRT411A0"
+author: "Abhayjot Ressi"
+date: "February 2, 2017"
+output:
+  pdf_document: default
+  html_document: default
+student ID: '024234155'
+school: Seneca College - School of Information and Communications Technology
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#SRT411: Digital Data Analysis - Winter 2017
+##Assignment 0
+### Introduction
+
+My name is Abhayjot Ressi. You can find me on GitHub as AbhayjotRessi. At the time this assignment is being written, I am a second year student in the Informatics and Security Program at Seneca College. This is Assignment 0 for SRT411. This assignment is based on the document "A (Very) Short Introduction to R" by Paul Torfs & Claudia Brauer [Can be found here](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf). The main idea of this document is to teach the basics of the R programming language though a tutorial combined with "To Do" sections at the end of each topic. The questions, code and results shown below are the results of my experience with this document. The final To Do is not a normal To Do section but an additional practice of your skill and was part of the requirements of this assignment as set by the professor.
+
+##To Do 1
+Compute the difference between 2017 and the year you started at this university and divide this by the difference between 2017 and the year you were born. Multiply this with 100 to get the percentage of your life you have spent at this university. Use brackets if you need them.
+```{r}
+(2017-2015)/(2017-1997)*100
+```
+
+##To Do 2
+Repeat the previous ToDo, but with several steps in between. You can give the variables any name you want, but the name has to start with a letter
+```{r}
+collegeyear <- (2017-2015)
+birth <- (2017-1997)
+collegeyear/birth*100
+```
+
+##To Do 3
+Compute the sum of 4, 5, 8 and 11 by first combining them into a vector and then using the function sum.
+```{r}
+sum(x <- c(4,5,8,11))
+```
+
+##To Do 4
+Plot 100 normal random numbers
+```{r}
+todo4 <- rnorm(100)
+plot(todo4)
+```
+
+##To Do 5
+Find help for the sqrt function
+```{r}
+help(sqrt)
+```
+
+##To Do 6
+Make a file called firstscript.R containing Rcode that generates 100 random numbers and plots them, and run this script several times.
+```{r}
+source("firstscript.R")
+```
+
+The file "firstscript.R" is located in my working directory. The contents of the that file is the following:
+```{r}
+#To Do 6
+
+#todo6 <- rnorm(100)
+#plot(todo6)
+```
+
+##To Do 7
+Put the numbers 31 to 60 in a vector named P and in a matrix with 6 rows and 5 columns named Q. Tip: use the function seq. Look at the different ways scalars, vectors and matrices are denoted in the workspace window.
+```{r}
+P <- seq(31:60)
+Q <- matrix(data=P,ncol=5,nrow=6)
+Q
+```
+
+##To Do 8
+Make a script file which constructs three random normal vectors of length 100. Call these vectors x1, x2 and x3. Make a data frame called t with three columns (called a, b and c) containing respectively x1, x1+x2 and x1+x2+x3. Call the following functions for this data frame: plot(t) and sd(t). Can you understand the results? Rerun this script a few times.
+```{r}
+source("todo8.R")
+```
+
+The file "todo8.R" is located in my working directory. The contents of the that file is the following:
+```{r}
+#TO DO 8
+
+#x1 <- c(rnorm(100))
+#x2<- c(rnorm(100))
+#x3<- c(rnorm(100))
+#todo8 = data.frame(a=x1,b=x1+x2,c=x1+x2+x3)
+#plot(todo8)
+```
+
+##To Do 9
+Add these lines to the script file of the previous section. Try to find out, either by experimenting or by using the help, what the meaning is of rgb, the last argument of rgb, lwd, pch, cex
+```{r}
+source("todo9.R")
+```
+
+The file "todo9.R" is located in my working directory. The contents of the that file is the following:
+```{r}
+#TO DO 9
+
+#x1 <- c(rnorm(100))
+#x2<- c(rnorm(100))
+#x3<- c(rnorm(100))
+#todo8 = data.frame(a=x1,b=x1+x2,c=x1+x2+x3)
+#plot(todo8$a, type="l", ylim=range(todo8),lwd=3, col=rgb(1,0,0,0.3))
+#lines(todo8$b, type="s", lwd=2,col=rgb(0.3,0.4,0.3,0.9))
+#points(todo8$c, pch=20, cex=4,col=rgb(0,0,1,0.3))
+#?rgb
+
+```
+
+##To Do 10
+Make a file called tst1.txt in Notepad from the example in Figure 4 and store it in your working directory. Write a script to read it, to multiply the column called g by 5 and to store it as tst2.txt.
+```{r}
+todo10 <- read.table(file="tst1.txt", header=TRUE)
+todo10$g <- todo10$g*5
+write.table(todo10,file="tst2.txt", row.names=FALSE)
+```
+The contents of tst1.txt:
+```{r}
+#a g x
+#1 2 3
+#2 4 6
+#4 8 12
+#8 16 24
+#16 32 48
+#32 64 96
+```
+The contents of tst2.txt after running the script:
+```{r}
+#"a" "g" "x"
+# 1 10 3
+# 2 20 6
+# 4 40 12
+# 8 80 24
+# 16 160 48
+# 32 320 96
+```
+
+##To Do 11
+Compute the mean of the square root of a vector of 100 random numbers. What happens?
+```{r}
+todo11 <- mean(sqrt(c(rnorm(100))))
+```
+The code above produces a warning message saying NaNs produced. Based on the To Do asking what happens, I believe that the warning message is to be expected.
+
+##To Do 12
+Make a graph with on the x-axis: today, Sinterklaas 2017 and your next birthday and on the y-axis the number of presents you expect on each of these days. Tip: make two vectors first.
+```{r}
+birthklass=strptime( c("20170130","20171116","20171206"),format="%Y%m%d")
+presentsreceived=c(5,9,4)
+plot( birthklass,presentsreceived, type = "b", col = "Blue", xlab = "Month",ylab="Number of Presents",main = "To Do 12")
+```
+
+##To Do 13
+Make a vector from 1 to 100. Make a for-loop which runs through the whole vector. Multiply the elements which are smaller than 5 and larger than 90 with 10 and the other elements with 0.1
+```{r}
+todo13 = 1:100
+for(i in 1:100)
+{
+  if (todo13[i] < 5 | todo13[i] > 90)
+  {
+    todo13[i] = todo13[i] * 10
+  } else
+  {
+    todo13[i] = todo13[i] * 0.1
+  }
+}
+todo13
+```
+
+##To Do 14
+Write a function for the previous ToDo, so that you can feed it any vector you like (as argument). Use a for-loop in the function to do the computation with each element. Use the standard R function length in the specification of the counter
+```{r}
+todo14=1:100
+functionfortodo14 = function(value1)
+{
+  l = length(value1)
+  for(i in 1:l)
+  {
+    if (value1[i] < 5 | value1[i] > 90)
+    {
+      value1[i] = value1[i] * 10
+    } else
+    {
+      value1[i] = value1[i] * 0.1
+    }
+  }
+  return (value1)
+}
+functionfortodo14(value1=todo14)
+```
+
+##To Do 15 (Footnote)
+Actually, people often use more for-loops than necessary. The ToDo above (ToDo 14) can be done more easily and quickly without a for-loop but with regular vector computations.
+```{r}
+todo15 <- c(1:100)
+ifelse(todo15 < 5 | x > 90, x * 10, x * 0.1)
+```
+
+#Sources and Acknowledgement
+[Short Intro to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)
+
+[An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+
+[R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+[R Markdown Database](http://rmarkdown.rstudio.com/)
+
+[Nice R Code](https://nicercode.github.io/guides/reports/)
+
+[Markdown](http://kbroman.org/knitr_knutshell/pages/markdown.html)
+
+[R Markdown](http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html)
+
+[Sharing Data Science Portfolio](https://www.dataquest.io/blog/how-to-share-data-science-portfolio/)
+
+[StackOverflow - Global Variables in R](http://stackoverflow.com/questions/1236620/global-variables-in-r)
+
+[Plotting Date-Time Graphs](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/axis.POSIXct.html)
+
+[Basic Dataframe Manipulations in R](https://therostrumblog.wordpress.com/2014/01/29/basic-data-frame-manipulations-in-r/)
